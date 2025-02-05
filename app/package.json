@@ -1,3 +1,24 @@
 {
-  "name": "@fastify-ssr/app"
+  "name": "@fastify-ssr/app",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon",
+    "build": "node ./esbuild.config.js",
+    "start": "node --loader=extensionless ./dist/index.js"
+  },
+  "nodemonConfig": {
+    "watch": "src",
+    "ignore": ["dist/**", "node_modules/**"],
+    "ext": "ts",
+    "exec": "rm -rf ./dist && yarn node ./esbuild.config.js && node --loader=extensionless ./dist/index.js"
+  },
+  "dependencies": {
+    "extensionless": "^1.9.9",
+    "nodemon": "^3.1.9"
+  },
+  "devDependencies": {
+    "@types/node": "20",
+    "esbuild": "^0.24.2",
+    "typescript": "^5.7.3"
+  }
 }
